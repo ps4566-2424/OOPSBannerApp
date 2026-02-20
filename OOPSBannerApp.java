@@ -1,31 +1,30 @@
+
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
+  
+    public static class CharacterPatternMap {
 
-        String[] oPattern = getOPattern();
-        String[] pPattern = getPPattern();
-        String[] sPattern = getSPattern();
+        private final char character;
+        private final String[] pattern;
 
-        // Assemble full banner
-        String[] bannerLines = new String[7];
-
-        for (int i = 0; i < 7; i++) {
-            bannerLines[i] = String.join(" ",
-                    oPattern[i],
-                    oPattern[i],
-                    pPattern[i],
-                    sPattern[i]);
+       
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
         }
 
-        // Print banner using enhanced for-loop
-        for (String line : bannerLines) {
-            System.out.println(line);
+        public char getCharacter() {
+            return character;
+        }
+
+        
+        public String[] getPattern() {
+            return pattern;
         }
     }
 
-    // Helper method for letter O
-    public static String[] getOPattern() {
-        return new String[]{
+    public static CharacterPatternMap buildOPattern() {
+        return new CharacterPatternMap('O', new String[]{
                 "*******",
                 "*     *",
                 "*     *",
@@ -33,12 +32,11 @@ public class OOPSBannerApp {
                 "*     *",
                 "*     *",
                 "*******"
-        };
+        });
     }
 
-    // Helper method for letter P
-    public static String[] getPPattern() {
-        return new String[]{
+    public static CharacterPatternMap buildPPattern() {
+        return new CharacterPatternMap('P', new String[]{
                 "*******",
                 "*     *",
                 "*     *",
@@ -46,12 +44,12 @@ public class OOPSBannerApp {
                 "*      ",
                 "*      ",
                 "*      "
-        };
+        });
     }
 
-    // Helper method for letter S
-    public static String[] getSPattern() {
-        return new String[]{
+    
+    public static CharacterPatternMap buildSPattern() {
+        return new CharacterPatternMap('S', new String[]{
                 "*******",
                 "*      ",
                 "*      ",
@@ -59,6 +57,28 @@ public class OOPSBannerApp {
                 "      *",
                 "      *",
                 "*******"
+        });
+    }
+
+    
+    public static void main(String[] args) {
+
+        CharacterPatternMap[] characters = {
+                buildOPattern(),
+                buildOPattern(),
+                buildPPattern(),
+                buildSPattern()
         };
+
+        for (int row = 0; row < 7; row++) {
+
+            StringBuilder lineBuilder = new StringBuilder();
+
+            for (CharacterPatternMap cp : characters) {
+                lineBuilder.append(cp.getPattern()[row]).append(" ");
+            }
+
+            System.out.println(lineBuilder);
+        }
     }
 }
