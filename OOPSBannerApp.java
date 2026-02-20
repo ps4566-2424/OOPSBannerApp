@@ -2,54 +2,63 @@ public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        // Declare and initialize array in one statement
-        String[] bannerLines = {
+        String[] oPattern = getOPattern();
+        String[] pPattern = getPPattern();
+        String[] sPattern = getSPattern();
 
-                String.join(" ",
-                        "*******",
-                        "*******",
-                        "*******",
-                        "*******"),
+        // Assemble full banner
+        String[] bannerLines = new String[7];
 
-                String.join(" ",
-                        "*     *",
-                        "*     *",
-                        "*     *",
-                        "*      "),
+        for (int i = 0; i < 7; i++) {
+            bannerLines[i] = String.join(" ",
+                    oPattern[i],
+                    oPattern[i],
+                    pPattern[i],
+                    sPattern[i]);
+        }
 
-                String.join(" ",
-                        "*     *",
-                        "*     *",
-                        "*     *",
-                        "*      "),
-
-                String.join(" ",
-                        "*     *",
-                        "*     *",
-                        "*******",
-                        "*******"),
-
-                String.join(" ",
-                        "*     *",
-                        "*     *",
-                        "*      ",
-                        "*     *"),
-
-                String.join(" ",
-                        "*     *",
-                        "*     *",
-                        "*      ",
-                        "*     *"),
-
-                String.join(" ",
-                        "*******",
-                        "*******",
-                        "*      ",
-                        "*******")
-        };
-
-               for (String line : bannerLines) {
+        // Print banner using enhanced for-loop
+        for (String line : bannerLines) {
             System.out.println(line);
         }
+    }
+
+    // Helper method for letter O
+    public static String[] getOPattern() {
+        return new String[]{
+                "*******",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*******"
+        };
+    }
+
+    // Helper method for letter P
+    public static String[] getPPattern() {
+        return new String[]{
+                "*******",
+                "*     *",
+                "*     *",
+                "*******",
+                "*      ",
+                "*      ",
+                "*      "
+        };
+    }
+
+    // Helper method for letter S
+    public static String[] getSPattern() {
+        return new String[]{
+                "*******",
+                "*      ",
+                "*      ",
+                "*******",
+                "      *",
+                "      *",
+                "*******"
+        };
     }
 }
